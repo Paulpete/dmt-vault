@@ -1,0 +1,32 @@
+name: Deploy Dream Meme Token
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: |
+          npm install --save-dev hardhat @nomicfoundation/hardhat-toolbox dotenv @openzeppelin/contracts
+
+      - name: Compile contracts
+        run: npx hardhat compile
+
+      - name: Deploy to Ethereum Mainnet
+        run: npx hardhat run scripts/deploy-all.js --network mainnet
+        env:
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          ALCHEMY_URL: ${{ secrets.ALCHEMY_URL }}
+          ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
