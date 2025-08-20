@@ -1,0 +1,32 @@
+name: Deploy DMT Vault
+
+on:
+  workflow_dispatch: # allows manual "Run workflow" from GitHub
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: |
+          npm install --save-dev hardhat @nomicfoundation/hardhat-toolbox ethers dotenv
+          npm install node-fetch
+
+      - name: Compile contracts
+        run: npx hardhat compile
+
+      - name: Deploy DMT Vault
+        env:
+          PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
+          BICONOMY_API_KEY: ${{ secrets.BICONOMY_API_KEY }}
+          RPC_URL: ${{ secrets.MAINNET_RPC_URL }}
+        run: node scripts/deploy-dmt.js
