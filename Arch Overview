@@ -1,0 +1,4 @@
+GitHub Action  ──(HMAC-signed HTTPS)──▶  Relayer (Express.js)
+                                               │
+                                               ├─ runs Hardhat scripts with PRIVATE_KEY (server-side only)
+                                               └─ broadcasts to SKALE RPC
