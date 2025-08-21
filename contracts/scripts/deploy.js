@@ -9,21 +9,33 @@ async function main() {
   const Vault = await hre.ethers.getContractFactory("Vault");
   const vault = await Vault.deploy();
   await vault.waitForDeployment();
-  console.log("Vault deployed:", await vault.getAddress());
+  const vaultAddress = await vault.getAddress();
+  console.log("Vault deployed:", vaultAddress);
 
-  // Deploy DMT with Vault as owner
+  // Deploy DMT
   const DMT = await hre.ethers.getContractFactory("DMT");
   const initialSupply = hre.ethers.parseUnits("1000000000", 18); // 1B DMT
   const dmt = await DMT.deploy(initialSupply);
   await dmt.waitForDeployment();
-  console.log("DMT deployed:", await dmt.getAddress());
+  const dmtAddress = await dmt.getAddress();
+  console.log("DMT deployed:", dmtAddress);
+
+  // Transfer DMT ownership to Vault (requires Ownable in DMT)
+  if (typeof dmt.transferOwnership === "function") {
+    const tx = await dmt.transferOwnership(vaultAddress);
+    await tx.wait();
+    console.log(`Transferred DMT ownership to Vault: ${vaultAddress}`);
+  } else {
+    console.warn("⚠️ DMT contract does not have transferOwnership(). Skipping.");
+  }
 
   // Save deployment info
   const out = {
     timestamp: Date.now(),
     deployer: deployer.address,
-    vault: await vault.getAddress(),
-    dmt: await dmt.getAddress(),
+    vault: vaultAddress,
+    dmt: dmtAddress,
+    dmtOwner: vaultAddress,
   };
   fs.writeFileSync(`deploy-${Date.now()}.json`, JSON.stringify(out, null, 2));
 }
