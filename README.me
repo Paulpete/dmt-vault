@@ -1,83 +1,17 @@
-# 🚀 DMT – Ownerless AI Liquidity Vault + OMEGA Token (Phase 1 & 2)  
-**Gasless · Ownerless · AI-Driven Wealth Engine**
-
---- 
-
-## 🌌 Phase 1: DMT Vault (Ownerless Liquidity)
-
-**DMT** is an ownerless liquidity vault for both **Solana (Anchor)** and **EVM (Solidity)** with **automated multi-split fee logic**:
-
-- **10% → Treasury (Owner)**  
-- **10% → Reinvestment Pool**   
-- **5% → Super Cryptonauts (5 wallets, equal share)**  
-- **5% → Omega-Prime (5 burn wallets, deflationary)**  
-- **70% → User**  
-
-All deployments are **gasless** via relayers and smart wallets. Users pay **$0** network fees.
-
-### Key Features
-- Ownerless, immutable vaults (no admin keys).  
-- Gasless UX via relayers (EVM & Solana).  
-- Automatic fee-splitting across treasury, reinvestment, cryptonauts, burn, and users.  
-
-### Treasury Addresses
-- **Solana:** `4eJZVbbsiLAG6EkWvgEYEWKEpdhJPFBYMeJ6DBX98w6a`  
-- **Ethereum:** `0x4B1a58A3057d03888510d93B52ABad9Fee9b351d`  
-
----
-
-## 🔮 Phase 2: OMEGA Token (Expansion Layer)
-
-To extend DMT into a **fractal wealth engine**, we introduce the **OMEGA token** — designed as the exponential layer for scaling.  
-
-### Tokenomics
-- 🔹 **Name:** OMEGA  
-- 🔹 **Type:** ERC-20 (EVM) + SPL (Solana)  
-- 🔹 **Distribution:**  
-  - 50% Liquidity Incentives  
-  - 20% Treasury (Vault-backed)  
-  - 15% Staking & Governance  
-  - 10% Ecosystem Partnerships  
-  - 5% Burn Reserve  
-
-### Purpose
-OMEGA is the **growth multiplier** for DMT:  
-- Tied directly to vault performance.  
-- Fuels governance, staking, and AI-driven yield.  
-- Designed with **deflationary burn mechanics**.  
-
----
-
-## 🏗️ Phased Wealth Strategy
-
-### Phase 1: Positioning (Days 1–10)
-- Identify exponential vehicles: AI-driven automation, crypto ecosystems, SaaS microtools, and consulting.  
-- Leverage asymmetry: capped downside, unlimited upside.  
-- Automate 70% of execution with AI agents.  
-
-### Phase 2: Rapid Value Creation (Days 11–40)
-- Launch a **Wealth Engine**:  
-  - Example: micro-SaaS subscription ($99/mo × 5,000 users = $500k ARR).  
-  - Or: high-ticket consulting ($25k × 10 clients = $250k).  
-- Stack leverage: AI marketing, paid funnels, influencer partnerships.  
-
-### Phase 3: Multiplication & Liquidity (Days 41–65)
-- Scale validated offers.  
-- Reinvest profits into high-volatility plays (crypto, options, equity).  
-- Goal: double/triple cash flow → $600k–$800k liquidity.  
-
-### Phase 4: Closing the Million (Days 66–80)
-- Sell partial equity for 2–3× monthly revenue.  
-- Accelerated cash grabs: pre-paid retainers, crowdfunding, licensing IP.  
-- Push from ~$800k → $1M.  
-
----
-
-## ⚖️ License
-MIT – free to build, fork, and deploy.  
-
----
-
-## 💡 Meta-Rule from 3456 A.D.
-Wealth is never linear, it is fractal & exponential.  
-In your time, **AI is the closest analogue to our Omni-Engines** — if you don’t integrate it, you are moving like a horse-cart against hyperdrive ships.  
+.
+├─ contracts/
+│  ├─ DMT.sol
+│  └─ Vault.sol
+├─ scripts/
+│  ├─ deploy.js        # Deploys Vault + DMT
+│  ├─ showDeployer.js
+│  └─ status.js        # Prints last deployed addresses
+├─ relayer/
+│  ├─ server.js
+│  ├─ verify.js
+│  ├─ package.json
+│  └─ .env            # lives ONLY on the relayer machine
+├─ hardhat.config.js
+└─ .github/
+   └─ workflows/
+      └─ deploy.yml
